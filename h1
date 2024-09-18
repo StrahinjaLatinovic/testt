@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <img class="logo" id="logo" src="" alt="Logo">
+   <header>
+    <nav>
+      <ul class="nav-li">
+        <li class="of"><div class="out">Home</div></li>
+        <li class="of"><div class="out o">About Us</div></li>
+      </ul>
+    </nav>
+   </header>
+   <section class="hero">
+    <div class="slider-container">
+      <div class="slider">
+          <div class="slide first"><img class="ww" id="a" alt="Slika 1"></div>
+          <div class="slide nextS"><img class="ww" id="bb"  alt="Slika 2"></div>
+          <div class="slide nextS"><img class="ww" id="cc" alt="Slika 3"></div>
+          <div class="slide nextS"><img class="ww" id="zz"  alt="Slika 2"></div>
+          <div class="slide nextS"><img class="ww" id="oo"  alt="Slika 2"></div>
+      </div>
+      <button class="prev">&#10094;</button>
+      <button class="next">&#10095;</button>
+  </div>
+   </section>
+    
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
