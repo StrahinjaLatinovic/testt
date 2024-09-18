@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+}
+body {
+  background-color: black;
+  color: white;
+}
+.intro {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.case {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  gap: 0.2rem;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  color: white;
+  font-size: 30px;
+  text-transform: uppercase;
+}
+
+.letters {
+  transform: translateY(100%)
+}
+.logo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 1.5rem;
+  opacity: 1;
+  will-change: opacity;
+  z-index: 10;
+}
+
+header {
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  z-index: 10;
+}
+
+.nav-li {
+  display: flex;
+  gap: 1rem;
+  font-size: 1.2rem;
+}
+
+.of {
+  overflow: hidden;
+}
+
+.out {
+  transform: translateY(100%)
+}
+
+.o {
+  opacity: 0.5;
+}
+
+.slider-container {
+  position: relative;
+  width: 100%; /* Širina celog vidljivog prozora */
+  height: 100vh; /* Visina celog vidljivog prozora */
+  
+ /* Sakriva deo slika koji izlazi iz okvira */
+}
+
+.slider {
+  position: relative;
+  width: 100%; /* Širina slider-a treba da odgovara širinama slajdova */
+  height: 100%; /* Visina slider-a treba da odgovara visinama slajdova */
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute; /* Postavite apsolutno da bi se slajdovi slagali jedan na drugi */
+  top: 0;
+  left: 0;
+  width: 100%; /* Svaki slajd zauzima 100% širine slider-a */
+  height: 100%; /* Svaki slajd zauzima 100% visine slider-a */
+  z-index: 1;
+  overflow: hidden;
+}
+
+
+
+.first {
+  position: relative;
+  transform: translateX(0%);
+  z-index: 3;
+  
+}
+.nextS {
+  position: absolute;
+  
+  z-index: 1;
+  overflow: hidden;
+}
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Prilagođava sliku da pokrije ceo prostor */
+  display: block;
+  scale: 1.2;
+}
+
+.prev {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  z-index: 20;
+}
+
+.next {
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  z-index: 20;
+}
