@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <img class="logo" id="logo" src="" alt="Logo">
+  <div class="intro">
+    <div class="case">
+      <div class="letters Chin">ย</div>
+      <div class="letters Chin">น</div>
+      <div class="letters Chin">ด</div>
+      <div class="letters Chin">ต</div>
+      <div class="letters Chin">อ</div>
+      <div class="letters Chin">น</div>
+      <div class="letters Chin">ร</div>
+      <div class="letters Chin">บ</div>
+    </div>
+    <div class="case">
+      <div class="letters J">よ</div>
+      <div class="letters J">う</div>
+      <div class="letters J">こ</div>
+      <div class="letters J">そ</div>
+    </div>
+    <div class="case">
+      
+      <div class="letters E">欢迎</div>
+      <div class="letters E">迎</div>
+    </div>
+    <div class="case">
+      <div class="letters A">W</div>
+      <div class="letters A">E</div>
+      <div class="letters A">L</div>
+      <div class="letters A">C</div>
+      <div class="letters A">O</div>
+      <div class="letters A">M</div>
+      
+    </div>
+  </div>
+    
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
