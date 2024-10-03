@@ -53,102 +53,137 @@ masterTimeline
   //.add(logoAnimateIn(), "+=2")
   //.add(finale(), "+=2")
 
- 
-  
 
-  
+let sections = document.querySelectorAll("section"),
+    images = document.querySelectorAll(".bg"),
+    headings = gsap.utils.toArray(".section-heading"),
+    outerWrappers = gsap.utils.toArray(".outer"),
+    innerWrappers = gsap.utils.toArray(".inner"),
+    pgnNumbers = document.querySelector(".pgn-numbers"),  // Selektujemo brojeve
+    currentIndex = 0,  // Početni indeks je 0 (prva sekcija)
+    animating;
 
-  let currentSlide = 0;
-  const slides = document.querySelectorAll('.slide');
-  const totalSlides = slides.length;
-  
-// Funkcija za pomeranje sledećeg slajda
-function moveNextSlide() {
-  if (currentSlide === totalSlides - 1) {
-      return; // Ne radi ništa
-  }
+// Pomoćna funkcija za deljenje teksta na slova
+function splitTextIntoSpans(heading) {
+  const text = heading.textContent.trim();
+  heading.innerHTML = ''; // Isprazni sadržaj elementa
 
-  const nextSlide = (currentSlide + 1) % totalSlides;
-
-  // Postavi z-index
-  slides.forEach(slide => {
-      slide.style.zIndex = 1; // Resetuj z-index
+  // Delimo tekst na slova
+  text.split('').forEach(char => {
+    const span = document.createElement('span');
+    span.textContent = char;
+    heading.appendChild(span);
   });
-  slides[currentSlide].style.zIndex = 2; // Trenutni slajd
-  slides[nextSlide].style.zIndex = 3; // Sledeći slajd
-
-  // Kreiraj timeline za animaciju
-  const tl = gsap.timeline();
-
-  // Animiraj trenutni slajd
-  tl.to(slides[currentSlide].querySelector('img'), {
-      duration: 2,
-      scale: 1, // Smanji trenutnu sliku
-      ease: "power4.out"
-  })
-  .to(slides[currentSlide], {
-      duration: 2,
-      x: '0%', // Pomeri trenutni slajd
-      ease: "power4.out",
-  }, "<")
-  .to(slides[nextSlide].querySelector('img'), {
-      duration: 2,
-      scale: 1.3, // Povećaj sledeću sliku
-      ease: "power4.out"
-  }, "<")
-  .from(slides[nextSlide], {
-    duration: 2,
-    x: '80%', // Pomeranje sledećeg slajda sa desne strane
-    ease: "power4.out"
-}, "<");
-
-  // Ažuriraj trenutni slajd
-  currentSlide = nextSlide;
 }
 
-// Funkcija za pomeranje prethodnog slajda
-function movePrevSlide() {
-  if (currentSlide === 0) {
-      return; // Ne radi ništa
+// Podeli tekst za svaki heading na slova
+headings.forEach(heading => splitTextIntoSpans(heading));
+
+gsap.set(outerWrappers, { xPercent: 100 });
+gsap.set(innerWrappers, { xPercent: -100 });
+
+// Funkcija za prikazivanje inicijalnog slajda
+function showInitialSection() {
+  gsap.set(sections[0], { autoAlpha: 1, zIndex: 1 });
+  gsap.set(images[0], { xPercent: 0 });
+  gsap.set([outerWrappers[0], innerWrappers[0]], { xPercent: 0 });
+  gsap.fromTo(headings[0].querySelectorAll('span'), {
+    autoAlpha: 0,
+    xPercent: 150
+  }, {
+    autoAlpha: 1,
+    xPercent: 0,
+    duration: 1,
+    ease: "power2",
+    stagger: {
+      each: 0.02,
+      from: "random"
+    }
+  });
+
+  // Postavi brojeve na početni broj
+  gsap.set(pgnNumbers, { y: 0 });
+}
+
+function animatePagination(index, direction) {
+  const offset = -index * 20;  // Pomera se po 20px za svaki broj, možeš prilagoditi ako je potrebno
+  gsap.to(pgnNumbers, {
+    y: offset,
+    duration: 1,
+    ease: "power1.inOut"
+  });
+}
+
+function gotoSection(index, direction) {
+  // Provera da li je indeks unutar granica
+  if (index < 0 || index >= sections.length) {
+    animating = false;
+    return;
   }
 
-  const prevSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+  animating = true;
+  let fromLeft = direction === -1,
+      dFactor = fromLeft ? -1 : 1,
+      tl = gsap.timeline({
+        defaults: { duration: 1.25, ease: "power1.inOut" },
+        onComplete: () => animating = false
+      });
 
-  // Postavi z-index
-  slides.forEach(slide => {
-      slide.style.zIndex = 1; // Resetuj z-index
-  });
-  slides[currentSlide].style.zIndex = 2; // Trenutni slajd
-  slides[prevSlide].style.zIndex = 3; // Prethodni slajd
+  if (currentIndex >= 0) {
+    gsap.set(sections[currentIndex], { zIndex: 0 });
+    tl.to(images[currentIndex], { xPercent: -15 * dFactor })
+      .set(sections[currentIndex], { autoAlpha: 0 });
+  }
 
-  // Kreiraj timeline za animaciju
-  const tl = gsap.timeline();
+  gsap.set(sections[index], { autoAlpha: 1, zIndex: 1 });
 
-  // Animiraj trenutni slajd
-  tl.to(slides[currentSlide].querySelector('img'), {
-      duration: 2,
-      scale: 1, // Smanji trenutnu sliku
-      ease: "power4.out"
-  })
-  .to(slides[currentSlide], {
-      duration: 2,
-      x: '0%', // Pomeri trenutni slajd udesno
-      ease: "power4.out",
-  }, "<")
-  .to(slides[prevSlide].querySelector('img'), {
-      duration: 2,
-      scale: 1.3, // Povećaj prethodnu sliku
-      ease: "power4.out"
-  }, "<")
-  .from(slides[prevSlide], {
-    duration: 2,
-    x: '-80%', // Pomeranje sledećeg slajda sa desne strane
-    ease: "power4.out"
-}, "<");
+  tl.fromTo([outerWrappers[index], innerWrappers[index]], {
+      xPercent: i => i ? -100 * dFactor : 100 * dFactor
+    }, {
+      xPercent: 0
+    }, 0)
+    .fromTo(images[index], { xPercent: 15 * dFactor }, { xPercent: 0 }, 0)
+    .fromTo(headings[index].querySelectorAll('span'), { // Animiramo slova
+        autoAlpha: 0,
+        xPercent: 150 * dFactor
+    }, {
+        autoAlpha: 1,
+        xPercent: 0,
+        duration: 1,
+        ease: "power2",
+        stagger: {
+          each: 0.02,
+          from: "random"
+        }
+      }, 0.2);
 
-  // Ažuriraj trenutni slajd
-  currentSlide = prevSlide;
+  // Animiraj brojeve u paginaciji
+  animatePagination(index, direction);
+
+  currentIndex = index;
 }
+
+// Event listener za dugme "Levo"
+document.getElementById('prev').addEventListener('click', () => {
+  if (!animating && currentIndex > 0) {
+    gotoSection(currentIndex - 1, -1);
+  }
+});
+
+// Event listener za dugme "Desno"
+document.getElementById('next').addEventListener('click', () => {
+  if (!animating && currentIndex < sections.length - 1) {
+    gotoSection(currentIndex + 1, 1);
+  }
+});
+
+// Prikaz prve sekcije bez animacije na početku
+showInitialSection();
+
+
+ ß
   
-  document.querySelector('.next').addEventListener('click', moveNextSlide);
-  document.querySelector('.prev').addEventListener('click', movePrevSlide);
+
+  
+
+  
