@@ -16,19 +16,94 @@
       </ul>
     </nav>
    </header>
-   <section class="hero">
-    <div class="slider-container">
-      <div class="slider">
-          <div class="slide first"><img class="ww" id="a" alt="Slika 1"></div>
-          <div class="slide nextS"><img class="ww" id="bb"  alt="Slika 2"></div>
-          <div class="slide nextS"><img class="ww" id="cc" alt="Slika 3"></div>
-          <div class="slide nextS"><img class="ww" id="zz"  alt="Slika 2"></div>
-          <div class="slide nextS"><img class="ww" id="oo"  alt="Slika 2"></div>
+     <header>
+      <div class="logo">LOGO</div>
+      <nav>
+        <div class="nav-btn">Home</div>
+        <div class="nav-btn o">About Us</div>
+      </nav>
+    </header>
+    <div class="button-container">
+      <button id="prev" class="nav-btn">Levo</button>
+      <button id="next" class="nav-btn">Desno</button>
+    </div>
+    <div class="pagination">
+      <div class="pgn-left">
+        <div class="pgn-of">
+          <div class="pgn-numbers">
+            <div class="">1</div>
+            <div class="">2</div>
+            <div class="">3</div>
+            <div class="">4</div>
+            <div class="">5</div>
+          </div>
+        </div>
       </div>
-      <button class="prev">&#10094;</button>
-      <button class="next">&#10095;</button>
-  </div>
-   </section>
+      <div class="space">-</div>
+      <div class="pgn-right">5</div>
+    </div>
+    <div class="scrool-arrow">
+      <div class="mouse_scroll">
+        <div class="mouse">
+          <div class="wheel"></div>
+        </div>
+        <div>
+          <span class="m_scroll_arrows unu"></span>
+          <span class="m_scroll_arrows doi"></span>
+          <span class="m_scroll_arrows trei"></span>
+        </div>
+      </div>
+      <div class="scroll-text">
+        <div class="scrool-text">
+          <div class="">Scrool down</div>
+        </div>
+      </div>
+    </div>
+    <section class="first">
+      <div class="outer">
+        <div class="inner">
+          <div class="bg one">
+            <h2 class="section-heading">Scroll down</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="second">
+      <div class="outer">
+        <div class="inner">
+          <div class="bg">
+            <h2 class="section-heading">Animated with GSAP</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="third">
+      <div class="outer">
+        <div class="inner">
+          <div class="bg">
+            <h2 class="section-heading">GreenSock</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="fourth">
+      <div class="outer">
+        <div class="inner">
+          <div class="bg">
+            <h2 class="section-heading">Animation platform</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="fifth">
+      <div class="outer">
+        <div class="inner">
+          <div class="bg">
+            <h2 class="section-heading">Keep scrolling</h2>
+          </div>
+        </div>
+      </div>
+    </section>
     
     <script type="module" src="/main.js"></script>
   </body>
